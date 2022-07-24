@@ -51,7 +51,8 @@ def get_player(query: QueryParameters):
 @app.route("/player", methods=["POST"])
 @validate()
 def create_player(body: RequestBody):
-    return body
+    output = f'Creating player :: Name: {body.first_name} {body.last_name}, Team: {body.team}'
+    return output
 
 
 ################################################################################
