@@ -50,8 +50,8 @@ def get_player(query: QueryParameters):
 
 @app.route("/player", methods=["POST"])
 @validate()
-def create_player(request_body: RequestBody):
-    return request_body
+def create_player(body: RequestBody):
+    return body
 
 
 ################################################################################
