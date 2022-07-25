@@ -24,14 +24,6 @@ class Player(BaseModel):
     team: Optional[str]
 
 
-class Input(BaseModel):
-    input: Player
-
-
-class Output(BaseModel):
-    output: Player
-
-
 ################################################################################
 # Flask app
 app = Flask(__name__)
