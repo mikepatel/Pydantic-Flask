@@ -17,19 +17,19 @@ from typing import Optional
 
 
 ################################################################################
-# Pydantic model
-class QueryParameters(BaseModel):
+# Pydantic models
+class Player(BaseModel):
     first_name: Optional[str]
     last_name: Optional[str]
     team: Optional[str]
-    age: Optional[int]
 
 
-class RequestBody(BaseModel):
-    first_name: str
-    last_name: str
-    team: str
-    age: Optional[int]
+class Input(BaseModel):
+    input: Player
+
+
+class Output(BaseModel):
+    output: Player
 
 
 ################################################################################
@@ -44,14 +44,15 @@ def index():
 
 @app.route("/player", methods=["GET"])
 @validate()
-def get_player(query: QueryParameters):
-    return query
+def get_player(query: Player):
+    output = f'Getting player: {query.json()}'
+    return output
 
 
 @app.route("/player", methods=["POST"])
 @validate()
-def create_player(body: RequestBody):
-    output = f'Creating player :: Name: {body.first_name} {body.last_name}, Team: {body.team}, Age: {body.age}'
+def create_player(body: Player):
+    output = f'Creating a new player called {body.first_name} {body.last_name} who plays for the {body.team}'
     return output
 
 
